@@ -1,0 +1,3 @@
+ccaa = {"Andalucia": 4, "Aragon": 5, "Cantabria": 6, "Castilla_la_Mancha": 7, "Castilla_y_Leon": 8, "Cataluña": 9, "Pais_Vasco": 10, "Principado_de_Asturias" : 11,
+        "Comunidad_de_Ceuta": 8744, "Comunidad_de_Melilla": 8745, "Comunidad_de_Madrid": 13, "Comunidad_de_Navarra": 14, "Comunidad_Valenciana": 15, "Extremadura": 16,
+        "Galicia": 17, "Islas_Baleares": 8743, "Islas_Canarias": 8742, "La_Rioja": 20, "Region_de_Murcia": 21}
