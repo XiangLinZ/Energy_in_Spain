@@ -273,3 +273,93 @@ def evolucion_renovable():
             df_final = pd.concat([df_final, df_fecha], axis = 0)
 
     df_final.to_csv("../data/evolucion_renovable_no_renovable.csv", index=False)
+
+# bien (tiene ccaa)
+def estructura_renovable():
+    df_final = pd.DataFrame()
+    years = [x for x in range(2014,2024)]
+
+    for year in years:
+        n_months = 13
+        if year == 2023:
+            n_months = 4
+        days_in_months = tuple(zip([str(numero).zfill(2) for numero in range(1, n_months)], [calendar.monthrange(year, month)[1] for month in range(1, n_months)]))
+        
+        for month in days_in_months:
+            inicio = f"{year}-{month[0]}-01"
+            final = f"{year}-{month[0]}-{month[1]}"
+
+            url = f'https://apidatos.ree.es/es/datos/generacion/estructura-renovables?start_date={inicio}T00:00&end_date={final}T23:59&time_trunc=day'
+
+            respuesta = requests.get(url).json()
+
+            df_fecha = (pd.DataFrame(respuesta["included"][0]["attributes"]["values"]))["datetime"]
+
+            for n in range(len(respuesta["included"])):
+                tipo = respuesta["included"][n]["type"]
+
+                df_valores = (pd.DataFrame(respuesta["included"][n]["attributes"]["values"])).drop(["datetime"], axis = 1)
+                df_valores.columns = [f"value_{tipo}", f"percentage_{tipo}"]
+
+                df_fecha = pd.concat([df_fecha, df_valores], axis = 1)
+
+            df_final = pd.concat([df_final, df_fecha], axis = 0)
+
+    df_final.to_csv("../data/estructura_renovables.csv", index=False)
+
+# bien, se puede por ccaa
+def emisiones_CO2():
+    df_final = pd.DataFrame()
+    years = [x for x in range(2014,2024)]
+
+    for year in years:
+        n_months = 13
+        if year == 2023:
+            n_months = 4
+        days_in_months = tuple(zip([str(numero).zfill(2) for numero in range(1, n_months)], [calendar.monthrange(year, month)[1] for month in range(1, n_months)]))
+        
+        for month in days_in_months:
+            inicio = f"{year}-{month[0]}-01"
+            final = f"{year}-{month[0]}-{month[1]}"
+
+            url = f'https://apidatos.ree.es/es/datos/generacion/no-renovables-detalle-emisiones-CO2?start_date={inicio}T00:00&end_date={final}T23:59&time_trunc=day'
+
+            respuesta = requests.get(url).json()
+
+            df_fecha = (pd.DataFrame(respuesta["included"][0]["attributes"]["values"]))["datetime"]
+
+            for n in range(len(respuesta["included"])):
+                tipo = respuesta["included"][n]["type"]
+
+                df_valores = (pd.DataFrame(respuesta["included"][n]["attributes"]["values"])).drop(["datetime"], axis = 1)
+                df_valores.columns = [f"value_{tipo}", f"percentage_{tipo}"]
+
+                df_fecha = pd.concat([df_fecha, df_valores], axis = 1)
+
+            df_final = pd.concat([df_final, df_fecha], axis = 0)
+
+    df_final.to_csv("../data/emisiones_CO2.csv", index=False)
+
+
+def precios_mercados():
+    df_final = pd.DataFrame()
+    years = [x for x in range(2014,2024)]
+
+    for year in years:
+        n_months = 13
+        if year == 2023:
+            n_months = 4
+        days_in_months = tuple(zip([str(numero).zfill(2) for numero in range(1, n_months)], [calendar.monthrange(year, month)[1] for month in range(1, n_months)]))
+        
+        for month in days_in_months:
+            inicio = f"{year}-{month[0]}-01"
+            final = f"{year}-{month[0]}-{month[1]}"
+
+            url = f"https://apidatos.ree.es/es/datos/mercados/precios-mercados-tiempo-real?start_date={inicio}T00:00&end_date={final}T23:59&time_trunc=hour"
+            respuesta = requests.get(url).json()
+
+            df = (pd.DataFrame(respuesta["included"][0]["attributes"]["values"])).drop(["percentage"], axis = 1)
+
+            df_final = pd.concat([df_final, df], axis = 0)
+
+    df_final.to_csv("../data/precios_mercados.csv", index=False)
