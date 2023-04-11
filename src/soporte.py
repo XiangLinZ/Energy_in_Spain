@@ -41,42 +41,41 @@ def balance():
 
 
 # Revisar da error em included
-def balance_ccaa(ccaa_id):
+def balance_ccaa():
     df_final = pd.DataFrame()
-    years = [x for x in range(2013,2024)]
+    for k, v in bb.ccaa.items():
+        years = [x for x in range(2013,2023)]
 
-    for year in years:
-        n_months = 13
-        if year == 2023:
-            n_months = 4
-        days_in_months = tuple(zip([str(numero).zfill(2) for numero in range(1, n_months)], [calendar.monthrange(year, month)[1] for month in range(1, n_months)]))
-        
-        for month in days_in_months:
-            inicio = f"{year}-{month[0]}-01"
-            final = f"{year}-{month[0]}-{month[1]}"
+        for year in years:
+            inicio = f"{year}-01-01"
+            final = f"{year}-12-31"
 
-            url = f"https://apidatos.ree.es/es/datos/balance/balance-electrico?start_date={inicio}T00:00&end_date={final}T23:59&time_trunc=day&geo_limit=ccaa&geo_ids={ccaa_id}"
+            url = f"https://apidatos.ree.es/es/datos/balance/balance-electrico?start_date={inicio}T00:00&end_date={final}T23:59&time_trunc=day&geo_limit=ccaa&geo_ids={v}"
 
             respuesta = requests.get(url).json()
-#este included primero, parece que en algunos existe en otros no???
-            df_fecha = (pd.DataFrame(respuesta["included"][0]["attributes"]["content"][0]["attributes"]["values"])).drop(["value", "percentage"], axis = 1)
-
+            try:
+                df_fecha = (pd.DataFrame(respuesta["included"][0]["attributes"]["content"][0]["attributes"]["values"]))["datetime"] 
+            except:
+                df_fecha = (pd.DataFrame(respuesta["included"][1]["attributes"]["content"][0]["attributes"]["values"]))["datetime"] 
             for n in range(len(respuesta["included"])):
                 for numb in range(len(respuesta["included"][n]["attributes"]["content"])):
+                    try:
+                        tipo = respuesta["included"][n]["attributes"]["content"][numb]["type"]
 
-                    tipo = respuesta["included"][n]["attributes"]["content"][numb]["type"]
+                        nombre_col = [f"value_{tipo}", f"percentage_{tipo}"]
 
-                    nombre_col = [f"value_{tipo}", f"percentage_{tipo}"]
+                        df_values = (pd.DataFrame(respuesta["included"][n]["attributes"]["content"][numb]["attributes"]["values"])).drop(["datetime"], axis = 1)
 
-                    df_values = (pd.DataFrame(respuesta["included"][n]["attributes"]["content"][numb]["attributes"]["values"])).drop(["datetime"], axis = 1)
+                        df_values.columns = nombre_col
 
-                    df_values.columns = nombre_col
-
-                    df_fecha = pd.concat([df_fecha, df_values], axis = 1)
-
+                        df_fecha = pd.concat([df_fecha, df_values], axis = 1)
+                    except:
+                        pass
+            
+            df_fecha["ccaa"] = f"{k}"
             df_final = pd.concat([df_final, df_fecha], axis = 0)
 
-    df_final.to_csv(f"../data/df_balance_{ccaa_id}.csv", index=False)
+    df_final.to_csv(f"../data/df_balance_ccaa.csv", index=False)
 
 # bien
 def demanda():
@@ -98,12 +97,10 @@ def demanda():
 # error
 def demanda_ccaa():
     df_final = pd.DataFrame()
-    years = [x for x in range(2013,2024)]
+    years = [x for x in range(2013,2023)]
     for year in years:
         inicio = f"{year}-01-01"
         final = f"{year}-12-31"
-        if year == 2023:
-            final = f"{year}-03-31"
         lista_ccaa = []
         for k, v in bb.ccaa.items():
             url = f"https://apidatos.ree.es/es/datos/demanda/evolucion?start_date={inicio}T00:00&end_date={final}T23:59&time_trunc=month&geo_limit=ccaa&geo_ids={v}"
@@ -274,7 +271,38 @@ def evolucion_renovable():
 
     df_final.to_csv("../data/evolucion_renovable_no_renovable.csv", index=False)
 
-# bien (tiene ccaa)
+#bien
+def evolucion_renovable_ccaa():
+    df_final = pd.DataFrame()
+    years = [x for x in range(2014,2023)]
+    for k, v in bb.ccaa.items():
+        for year in years:
+            inicio = f"{year}-01-01"
+            final = f"{year}-12-31"
+
+            url = f'https://apidatos.ree.es/es/datos/generacion/evolucion-renovable-no-renovable?start_date={inicio}T00:00&end_date={final}T23:59&time_trunc=month&geo_limit=ccaa&geo_ids={v}'
+
+            respuesta = requests.get(url).json()
+            try:
+                df_fecha = (pd.DataFrame(respuesta["included"][0]["attributes"]["values"]))["datetime"]
+            except:
+                df_fecha = (pd.DataFrame(respuesta["included"][1]["attributes"]["values"]))["datetime"]
+            for n in range(len(respuesta["included"])):
+                try:
+                    tipo = respuesta["included"][n]["type"]
+
+                    df_valores = (pd.DataFrame(respuesta["included"][n]["attributes"]["values"])).drop(["datetime"], axis = 1)
+                    df_valores.columns = [f"value_{tipo}", f"percentage_{tipo}"]
+
+                    df_fecha = pd.concat([df_fecha, df_valores], axis = 1)
+                except:
+                    pass
+            df_fecha["ccaa"] = f"{k}"
+            df_final = pd.concat([df_final, df_fecha], axis = 0)
+
+    df_final.to_csv("../data/evolucion_renovable_no_renovable_ccaa.csv", index=False)
+
+# bien (tiene ccaa, pero me parece raro este dato)
 def estructura_renovable():
     df_final = pd.DataFrame()
     years = [x for x in range(2014,2024)]
@@ -363,3 +391,4 @@ def precios_mercados():
             df_final = pd.concat([df_final, df], axis = 0)
 
     df_final.to_csv("../data/precios_mercados.csv", index=False)
+
