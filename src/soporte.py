@@ -4,6 +4,10 @@ import numpy as np
 import requests
 import pickle
 
+import sys
+sys.path.append("../")
+import src.biblioteca as bb
+
 def balance():
     df_final = pd.DataFrame()
     years = [x for x in range(2013,2024)]
@@ -40,7 +44,7 @@ def balance():
     df_final.to_csv("../data/balance.csv", index=False)
 
 
-# Revisar da error em included
+# bien
 def balance_ccaa():
     df_final = pd.DataFrame()
     for k, v in bb.ccaa.items():
@@ -75,7 +79,7 @@ def balance_ccaa():
             df_fecha["ccaa"] = f"{k}"
             df_final = pd.concat([df_final, df_fecha], axis = 0)
 
-    df_final.to_csv(f"../data/df_balance_ccaa.csv", index=False)
+    df_final.to_csv(f"../data/balance_ccaa.csv", index=False)
 
 # bien
 def demanda():
@@ -94,7 +98,7 @@ def demanda():
 
     df_final.to_csv("../data/demanda.csv", index=False)
 
-# error
+# bien
 def demanda_ccaa():
     df_final = pd.DataFrame()
     years = [x for x in range(2013,2023)]
@@ -115,23 +119,6 @@ def demanda_ccaa():
         df_final = pd.concat([df_final, df_ccaa], axis = 0)
         
     df_final.to_csv(f"../data/demanda_ccaa.csv", index=False)
-
-# versión B que sigue dando error en los included
-def demanda_ccaa(comunidad):
-    df_final = pd.DataFrame()
-    years = [x for x in range(2013,2024)]
-    for year in years:
-        inicio = f"{year}-01-01"
-        final = f"{year}-12-31"
-        if year == 2023:
-            final = f"{year}-03-31"
-
-        url = f'https://apidatos.ree.es/es/datos/demanda/evolucion?start_date={inicio}T00:00&end_date={final}T23:59&time_trunc=month&geo_limit=ccaa&geo_ids={bb.ccaa[comunidad]}'
-        respuesta = requests.get(url).json()
-        df = (pd.DataFrame(respuesta["included"][0]["attributes"]["values"]).drop(["percentage"], axis = 1))
-        df_final = pd.concat([df_final, df], axis = 0)
-        
-    df_final.to_csv(f'../data/demanda_{comunidad}.csv', index=False)
 
 #bien
 def demanda_max_diaria():
