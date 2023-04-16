@@ -20,3 +20,8 @@ mecados = ["componentes-precio-energia-cierre-desglose", "componentes-precio", "
 
 tipos_energia = ["Turbinación bombeo", "Nuclear", "Ciclo combinado", "Carbón", "Turbina de gas", "Motores diésel", "Turbina de vapor", "Fuel + Gas", "Cogeneración",
         "Residuos no renovables", "Hidráulica", "Eólica", "Solar fotovoltaica", "Solar térmica", "Otras renovables", "Residuos renovables", "Hidroeólica"]
+
+estaciones = {"Primavera": ["03-20", "06-20"],
+              "Verano": ["06-21", "09-22"],
+              "Otoño": ["09-22", "12-21"],
+              "Invierno": ["12-22", "03-19"]}
