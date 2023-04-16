@@ -4,6 +4,9 @@ import numpy as np
 import requests
 import pickle
 
+import plotly.express as px
+import plotly.graph_objects as go
+
 import sys
 sys.path.append("../")
 import src.biblioteca as bb
@@ -41,7 +44,7 @@ def balance():
 
             df_final = pd.concat([df_final, df_fecha], axis = 0)
 
-    df_final.to_csv("../data/balance.csv", index=False)
+    df_final.to_csv("../data/scrap/balance.csv", index=False)
 
 
 # bien
@@ -79,7 +82,7 @@ def balance_ccaa():
             df_fecha["ccaa"] = f"{k}"
             df_final = pd.concat([df_final, df_fecha], axis = 0)
 
-    df_final.to_csv(f"../data/balance_ccaa.csv", index=False)
+    df_final.to_csv(f"../data/scrap/balance_ccaa.csv", index=False)
 
 # bien
 def demanda():
@@ -96,7 +99,7 @@ def demanda():
 
         df_final = pd.concat([df_final, df], axis = 0)
 
-    df_final.to_csv("../data/demanda.csv", index=False)
+    df_final.to_csv("../data/scrap/demanda.csv", index=False)
 
 # bien
 def demanda_ccaa():
@@ -118,7 +121,7 @@ def demanda_ccaa():
         df_ccaa = pd.concat(lista_sin_fecha, axis = 1)
         df_final = pd.concat([df_final, df_ccaa], axis = 0)
         
-    df_final.to_csv(f"../data/demanda_ccaa.csv", index=False)
+    df_final.to_csv(f"../data/scrap/demanda_ccaa.csv", index=False)
 
 #bien
 def demanda_max_diaria():
@@ -136,7 +139,7 @@ def demanda_max_diaria():
 
         df_final = pd.concat([df_final, df], axis = 0)
 
-    df_final.to_csv("../data/demanda_max_diaria.csv", index=False)
+    df_final.to_csv("../data/scrap/demanda_max_diaria.csv", index=False)
 
 #bien
 def demanda_max_horaria():
@@ -154,7 +157,7 @@ def demanda_max_horaria():
 
         df_final = pd.concat([df_final, df], axis = 0)
 
-    df_final.to_csv("../data/demanda_max_horaria.csv", index=False)
+    df_final.to_csv("../data/scrap/demanda_max_horaria.csv", index=False)
 
 #bien
 def perdidas_transporte():
@@ -172,7 +175,7 @@ def perdidas_transporte():
 
         df_final = pd.concat([df_final, df], axis = 0)
 
-    df_final.to_csv("../data/perdidas_transporte.csv", index=False)
+    df_final.to_csv("../data/scrap/perdidas_transporte.csv", index=False)
 
 #bien
 def potencia_maxima_instantanea():
@@ -190,7 +193,7 @@ def potencia_maxima_instantanea():
 
         df_final = pd.concat([df_final, df], axis = 0)
 
-    df_final.to_csv("../data/potencia_maxima_instantanea.csv", index=False)
+    df_final.to_csv("../data/scrap/potencia_maxima_instantanea.csv", index=False)
 
 # bien
 def demanda_tiempo_real():
@@ -223,7 +226,7 @@ def demanda_tiempo_real():
 
             df_final = pd.concat([df_final, df_fecha], axis = 0)
 
-    df_final.to_csv("../data/demanda_tiempo_real.csv", index=False)
+    df_final.to_csv("../data/scrap/demanda_tiempo_real.csv", index=False)
 
 #bien
 def evolucion_renovable():
@@ -256,7 +259,7 @@ def evolucion_renovable():
 
             df_final = pd.concat([df_final, df_fecha], axis = 0)
 
-    df_final.to_csv("../data/evolucion_renovable_no_renovable.csv", index=False)
+    df_final.to_csv("../data/scrap/evolucion_renovable_no_renovable.csv", index=False)
 
 #bien
 def evolucion_renovable_ccaa():
@@ -287,7 +290,7 @@ def evolucion_renovable_ccaa():
             df_fecha["ccaa"] = f"{k}"
             df_final = pd.concat([df_final, df_fecha], axis = 0)
 
-    df_final.to_csv("../data/evolucion_renovable_no_renovable_ccaa.csv", index=False)
+    df_final.to_csv("../data/scrap/evolucion_renovable_no_renovable_ccaa.csv", index=False)
 
 # bien (tiene ccaa, pero me parece raro este dato)
 def estructura_renovable():
@@ -320,7 +323,7 @@ def estructura_renovable():
 
             df_final = pd.concat([df_final, df_fecha], axis = 0)
 
-    df_final.to_csv("../data/estructura_renovables.csv", index=False)
+    df_final.to_csv("../data/scrap/estructura_renovables.csv", index=False)
 
 # bien, se puede por ccaa
 def emisiones_CO2():
@@ -353,7 +356,7 @@ def emisiones_CO2():
 
             df_final = pd.concat([df_final, df_fecha], axis = 0)
 
-    df_final.to_csv("../data/emisiones_CO2.csv", index=False)
+    df_final.to_csv("../data/scrap/emisiones_CO2.csv", index=False)
 
 
 def precios_mercados():
@@ -377,5 +380,48 @@ def precios_mercados():
 
             df_final = pd.concat([df_final, df], axis = 0)
 
-    df_final.to_csv("../data/precios_mercados.csv", index=False)
+    df_final.to_csv("../data/scrap/precios_mercados.csv", index=False)
 
+
+# Visualizacion
+
+def px_demanda(año):
+    with open(f'../data/visualizacion/px_demanda.pkl', 'rb') as demanda:
+        df = pickle.load(demanda)
+
+    df_year = df[df["datetime"].dt.year == int(año)]
+    mean_value = df_year['value'].mean()
+
+    fig1 = px.line(df_year, x = "datetime", y = "value", line_group = None)
+    fig1.add_shape(go.layout.Shape(
+        type = "line",
+        x0 = df_year['datetime'].iloc[0],
+        y0 = mean_value,
+        x1 = df_year['datetime'].iloc[-1],
+        y1 = mean_value,
+        line = dict(color = "black", width = 2, dash = "dot")))
+
+    fig1.show()
+
+
+def px_demanda_real(año, semana):
+    with open(f'../data/visualizacion/px_demanda_real.pkl', 'rb') as demanda_real:
+        df = pickle.load(demanda_real)
+
+    df_year2 = df[df["datetime"].dt.year == int(año)]
+    df_week2 = df_year2[df_year2["datetime"].dt.isocalendar().week == int(semana)]
+    mean_value = df_week2["value_Demanda real"].mean()
+    fig = px.line(
+                df_week2,
+                x='datetime',
+                y=["value_Demanda real", "value_Demanda programada", "value_Demanda prevista"],
+                color_discrete_sequence=['blue', 'red', "green"])
+    fig.add_shape(go.layout.Shape(
+            type = "line",
+            x0 = df_week2['datetime'].iloc[0],
+            y0 = mean_value,
+            x1 = df_week2['datetime'].iloc[-1],
+            y1 = mean_value,
+            line = dict(color = "black", width = 2, dash = "dot")))
+    
+    fig.show()
