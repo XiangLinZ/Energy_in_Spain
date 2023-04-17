@@ -389,15 +389,15 @@ def px_demanda(año):
     with open(f'../data/visualizacion/px_demanda.pkl', 'rb') as demanda:
         df = pickle.load(demanda)
 
-    df_year = df[df["datetime"].dt.year == int(año)]
-    mean_value = df_year['value'].mean()
+    df_year = df[df["Fecha"].dt.year == int(año)]
+    mean_value = df_year['Demanda en MW'].mean()
 
-    fig = px.line(df_year, x = "datetime", y = "value", line_group = None)
+    fig = px.line(df_year, x = "Fecha", y = "Demanda en MW", line_group = None)
     fig.add_shape(go.layout.Shape(
         type = "line",
-        x0 = df_year['datetime'].iloc[0],
+        x0 = df_year['Fecha'].iloc[0],
         y0 = mean_value,
-        x1 = df_year['datetime'].iloc[-1],
+        x1 = df_year['Fecha'].iloc[-1],
         y1 = mean_value,
         line = dict(color = "black", width = 2, dash = "dot")))
 
@@ -408,19 +408,19 @@ def px_demanda_real(año, semana):
     with open(f'../data/visualizacion/px_demanda_real.pkl', 'rb') as demanda_real:
         df = pickle.load(demanda_real)
 
-    df_year2 = df[df["datetime"].dt.year == int(año)]
-    df_week2 = df_year2[df_year2["datetime"].dt.isocalendar().week == int(semana)]
-    mean_value = df_week2["value_Demanda real"].mean()
+    df_year2 = df[df["Fecha"].dt.year == int(año)]
+    df_week2 = df_year2[df_year2["Fecha"].dt.isocalendar().week == int(semana)]
+    mean_value = df_week2["Demanda real en MW"].mean()
     fig = px.line(
                 df_week2,
-                x='datetime',
-                y=["value_Demanda real", "value_Demanda programada", "value_Demanda prevista"],
+                x='Fecha',
+                y=["Demanda real en MW", "Demanda programada en MW", "Demanda prevista en MW"],
                 color_discrete_sequence=['blue', 'red', "green"])
     fig.add_shape(go.layout.Shape(
             type = "line",
-            x0 = df_week2['datetime'].iloc[0],
+            x0 = df_week2['Fecha'].iloc[0],
             y0 = mean_value,
-            x1 = df_week2['datetime'].iloc[-1],
+            x1 = df_week2['Fecha'].iloc[-1],
             y1 = mean_value,
             line = dict(color = "black", width = 2, dash = "dot")))
     
@@ -454,7 +454,7 @@ def px_demanda_estacion():
 def px_precio_historico():
     with open(f'../data/visualizacion/px_precio_historico.pkl', 'rb') as precios_historico:
         df = pickle.load(precios_historico)
-    fig = px.line(df, x = "mes_y_año", y = "value", line_group = None)
+    fig = px.line(df, x = "Fecha", y = "Precio mayorista en €/MWh", line_group = None)
 
     fig.show()
 
@@ -463,15 +463,15 @@ def px_precio_diario(año):
     with open(f'../data/visualizacion/px_precio_diario.pkl', 'rb') as precio_diario:
         df = pickle.load(precio_diario)
     
-    df_year = df[df["datetime"].dt.year == int(año)]
-    mean_value = df_year['value'].mean()
-    fig = px.line(df_year, x = "datetime", y = "value", line_group = None)
+    df_year = df[df["Fecha"].dt.year == int(año)]
+    mean_value = df_year['Precio mayorista en €/MWh'].mean()
+    fig = px.line(df_year, x = "Fecha", y = "Precio mayorista en €/MWh", line_group = None)
     
     fig.add_shape(go.layout.Shape(
             type = "line",
-            x0 = df_year['datetime'].iloc[0],
+            x0 = df_year['Fecha'].iloc[0],
             y0 = mean_value,
-            x1 = df_year['datetime'].iloc[-1],
+            x1 = df_year['Fecha'].iloc[-1],
             y1 = mean_value,
             line = dict(color = "black", width = 2, dash = "dot")))
     
@@ -485,7 +485,7 @@ def px_porcentage_renovables_barplot():
     fig = px.bar(
         df,
         x = 'Energia',
-        y = 'value',
+        y = 'Porcentage',
         color = "Tipo",
         color_discrete_map = {"Renovable": "Green", 'No Renovable': 'black'})
 
@@ -499,7 +499,7 @@ def px_porcentage_renovables_sunburst():
     fig = px.sunburst(
         df,
         path = ["Tipo", "Energia"],
-        values = "value",
+        values = "Porcentage",
         color = "Tipo",
         color_discrete_map = {"Renovable": "Green", 'No Renovable': 'black'})
     
@@ -511,7 +511,7 @@ def px_balance_renovables(energias):
         df = pickle.load(balance_renovables)
     fig = px.line(
         df,
-        x = 'mes_y_año',
+        x = 'Fecha',
         y = energias,
         color_discrete_map = {
         "Turbinación bombeo": "blue", "Nuclear": "green", "Ciclo combinado": "brown",
@@ -565,8 +565,8 @@ def px_emisiones():
 
     fig = px.line(
         df,
-        x = 'mes_y_año',
-        y = ["value_Carbón", "value_Motores diésel", "value_Turbina de gas", "value_Turbina de vapor", "value_Ciclo combinado", "value_Cogeneración", "value_Residuos no renovables"])
+        x = 'Fecha',
+        y = ["Carbón", "Motores diésel", "Turbina de gas", "Turbina de vapor", "Ciclo combinado", "Cogeneración", "Residuos no renovables"])
     
     fig.show()
 
@@ -575,16 +575,35 @@ def px_perdidas():
     with open(f'../data/visualizacion/px_perdidas.pkl', 'rb') as perdidas:
         df = pickle.load(perdidas)
 
-    mean_value = df["percentage"].mean()
+    mean_value = df["Porcentage"].mean()
 
-    fig = px.line(df, x = "mes_y_año", y = "percentage", line_group = None)
+    fig = px.line(df, x = "Fecha", y = "Porcentage", line_group = None)
     
     fig.add_shape(go.layout.Shape(
             type = "line",
-            x0 = df['mes_y_año'].iloc[0],
+            x0 = df['Fecha'].iloc[0],
             y0 = mean_value,
-            x1 = df['mes_y_año'].iloc[-1],
+            x1 = df['Fecha'].iloc[-1],
             y1 = mean_value,
             line = dict(color = "black", width = 2, dash = "dot")))
     
+    fig.show()
+
+
+def px_generado():
+    with open(f'../data/visualizacion/px_generado.pkl', 'rb') as generado:
+        df = pickle.load(generado)
+        
+    mean_value = df['Generación en MW'].mean()
+
+    fig = px.line(df, x = "Fecha", y = "Generación en MW", line_group = None)
+
+    fig.add_shape(go.layout.Shape(
+            type = "line",
+            x0 = df['Fecha'].iloc[0],
+            y0 = mean_value,
+            x1 = df['Fecha'].iloc[-1],
+            y1 = mean_value,
+            line = dict(color = "black", width = 2, dash = "dot")))
+
     fig.show()
