@@ -393,14 +393,20 @@ def px_demanda(año):
     mean_value = df_year['Demanda en MW'].mean()
 
     fig = px.line(df_year, x = "Fecha", y = "Demanda en MW", line_group = None)
+    
     fig.add_shape(go.layout.Shape(
         type = "line",
         x0 = df_year['Fecha'].iloc[0],
         y0 = mean_value,
         x1 = df_year['Fecha'].iloc[-1],
         y1 = mean_value,
-        line = dict(color = "black", width = 2, dash = "dot")))
+        line = dict(color = "#00072D", width = 2, dash = "dot")))
 
+    fig.update_layout(
+        plot_bgcolor = '#E1D5D7',
+        paper_bgcolor='#F7EBEC',
+        font=dict(family = 'Arial', color = '#00072D'))
+    
     fig.show()
 
 
@@ -422,8 +428,13 @@ def px_demanda_real(año, semana):
             y0 = mean_value,
             x1 = df_week2['Fecha'].iloc[-1],
             y1 = mean_value,
-            line = dict(color = "black", width = 2, dash = "dot")))
+            line = dict(color = "#00072D", width = 2, dash = "dot")))
     
+    fig.update_layout(
+        plot_bgcolor = '#E1D5D7',
+        paper_bgcolor='#F7EBEC',
+        font=dict(family = 'Arial', color = '#00072D'))
+     
     fig.show()
 
 
@@ -439,14 +450,18 @@ def px_demanda_estacion():
     fig.update_layout(
         xaxis=dict(
             tickvals=[87+ (144*n) for n in range(0,7)],
-            ticktext=["Lunes", "Martes", "Miércoles", "Jueves", "Viernes", "Sábado", "Domingo"]))
+            ticktext=["Lunes", "Martes", "Miércoles", "Jueves", "Viernes", "Sábado", "Domingo"]),
+        plot_bgcolor = '#E1D5D7',
+        paper_bgcolor='#F7EBEC',
+        font=dict(family = 'Arial', color = '#00072D'))
+    
     fig.add_shape(go.layout.Shape(
             type = "line",
             x0 = df['Día'].iloc[0],
             y0 = mean_value,
             x1 = df['Día'].iloc[-1],
             y1 = mean_value,
-            line = dict(color = "black", width = 2, dash = "dot")))
+            line = dict(color = "#00072D", width = 2, dash = "dot")))
     
     fig.show()
 
@@ -456,6 +471,11 @@ def px_precio_historico():
         df = pickle.load(precios_historico)
     fig = px.line(df, x = "Fecha", y = "Precio mayorista en €/MWh", line_group = None)
 
+    fig.update_layout(
+        plot_bgcolor = '#E1D5D7',
+        paper_bgcolor='#F7EBEC',
+        font=dict(family = 'Arial', color = '#00072D'))
+    
     fig.show()
 
 
@@ -473,7 +493,12 @@ def px_precio_diario(año):
             y0 = mean_value,
             x1 = df_year['Fecha'].iloc[-1],
             y1 = mean_value,
-            line = dict(color = "black", width = 2, dash = "dot")))
+            line = dict(color = "#00072D", width = 2, dash = "dot")))
+    
+    fig.update_layout(
+        plot_bgcolor = '#E1D5D7',
+        paper_bgcolor='#F7EBEC',
+        font=dict(family = 'Arial', color = '#00072D'))
     
     fig.show()
 
@@ -487,8 +512,13 @@ def px_porcentage_renovables_barplot():
         x = 'Energia',
         y = 'Porcentage',
         color = "Tipo",
-        color_discrete_map = {"Renovable": "Green", 'No Renovable': 'black'})
+        color_discrete_map = {"Renovable": "#44CF6C", 'No Renovable': '#0E7C7B'})
 
+    fig.update_layout(
+        plot_bgcolor = '#E1D5D7',
+        paper_bgcolor='#F7EBEC',
+        font=dict(family = 'Arial', color = '#00072D'))
+    
     fig.show()
 
 
@@ -501,8 +531,13 @@ def px_porcentage_renovables_sunburst():
         path = ["Tipo", "Energia"],
         values = "Porcentage",
         color = "Tipo",
-        color_discrete_map = {"Renovable": "Green", 'No Renovable': 'black'})
+        color_discrete_map = {"Renovable": "#44CF6C", 'No Renovable': '#0E7C7B'})
     
+    fig.update_layout(
+        plot_bgcolor = '#E1D5D7',
+        paper_bgcolor='#F7EBEC',
+        font=dict(family = 'Arial', color = '#00072D'))
+
     fig.show()
 
 
@@ -520,6 +555,11 @@ def px_balance_renovables(energias):
         "Eólica": "lightblue", "Solar fotovoltaica": "yellow", "Solar térmica": "red", "Otras renovables": "violet",
         "Residuos renovables": "yellowgreen", "Hidroeólica": "seashell"})
     
+    fig.update_layout(
+        plot_bgcolor = '#E1D5D7',
+        paper_bgcolor='#F7EBEC',
+        font=dict(family = 'Arial', color = '#00072D'))
+    
     fig.show()
 
 
@@ -534,7 +574,7 @@ def px_evo_reno():
         x = df['mes_y_año'], y = (df["percentage_Renovable"]*100),
         hoverinfo='x+y',
         mode='lines',
-        line=dict(width=0.5, color='green'),
+        line=dict(width=0.5, color='#44CF6C'),
         stackgroup='one',
         name = "Renovable"))
     
@@ -542,7 +582,7 @@ def px_evo_reno():
         x = df['mes_y_año'], y = (df["percentage_No renovable"]*100),
         hoverinfo='x+y',
         mode='lines',
-        line=dict(width=0.5, color='black'),
+        line=dict(width=0.5, color='#0E7C7B'),
         stackgroup='one',
         name = "No Renovable"))
     
@@ -552,9 +592,13 @@ def px_evo_reno():
                 y0 = mean_value,
                 x1 = df['mes_y_año'].iloc[-1],
                 y1 = mean_value,
-                line = dict(color = "black", width = 2, dash = "dot")))
+                line = dict(color = "#00072D", width = 2, dash = "dot")))
     
-    fig.update_layout(yaxis_range=(0, 100))
+    fig.update_layout(
+        yaxis_range=(0, 100),
+        plot_bgcolor = '#E1D5D7',
+        paper_bgcolor='#F7EBEC',
+        font=dict(family = 'Arial', color = '#00072D'))
 
     fig.show()
 
@@ -567,6 +611,11 @@ def px_emisiones():
         df,
         x = 'Fecha',
         y = ["Carbón", "Motores diésel", "Turbina de gas", "Turbina de vapor", "Ciclo combinado", "Cogeneración", "Residuos no renovables"])
+    
+    fig.update_layout(
+        plot_bgcolor = '#E1D5D7',
+        paper_bgcolor='#F7EBEC',
+        font=dict(family = 'Arial', color = '#00072D'))
     
     fig.show()
 
@@ -585,7 +634,12 @@ def px_perdidas():
             y0 = mean_value,
             x1 = df['Fecha'].iloc[-1],
             y1 = mean_value,
-            line = dict(color = "black", width = 2, dash = "dot")))
+            line = dict(color = "#00072D", width = 2, dash = "dot")))
+    
+    fig.update_layout(
+        plot_bgcolor = '#E1D5D7',
+        paper_bgcolor='#F7EBEC',
+        font=dict(family = 'Arial', color = '#00072D'))
     
     fig.show()
 
@@ -604,6 +658,11 @@ def px_generado():
             y0 = mean_value,
             x1 = df['Fecha'].iloc[-1],
             y1 = mean_value,
-            line = dict(color = "black", width = 2, dash = "dot")))
+            line = dict(color = "#00072D", width = 2, dash = "dot")))
 
+    fig.update_layout(
+        plot_bgcolor = '#E1D5D7',
+        paper_bgcolor='#F7EBEC',
+        font=dict(family = 'Arial', color = '#00072D'))
+    
     fig.show()
