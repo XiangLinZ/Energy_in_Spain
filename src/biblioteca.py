@@ -25,3 +25,9 @@ estaciones = {"Primavera": ["03-20", "06-20"],
               "Verano": ["06-21", "09-22"],
               "Otoño": ["09-22", "12-21"],
               "Invierno": ["12-22", "03-19"]}
+
+ccaa_real = {"Andalucia": "Andalucía", "Aragon": "Aragón", "Cantabria": "Cantabria", "Castilla_la_Mancha": "Castilla-La Mancha", "Castilla_y_Leon": "Castilla y León",
+            "Cataluña": "Cataluña/Catalunya", "Pais_Vasco" : "País Vasco/Euskadi", "Principado_de_Asturias": "Principado de Asturias", "Comunidad_de_Ceuta": "Ciudad Autónoma de Ceuta",
+            "Comunidad_de_Melilla" : "Ciudad Autónoma de Melilla", "Comunidad_de_Madrid": "Comunidad de Madrid", "Comunidad_de_Navarra": "Comunidad Foral de Navarra",
+            "Comunidad_Valenciana" : "Comunitat Valenciana", "Extremadura": "Extremadura", "Galicia": "Galicia", "Islas_Baleares": "Illes Balears", "Islas_Canarias": "Islas Canarias",
+            "La_Rioja": "La Rioja", "Region_de_Murcia": "Región de Murcia"}
