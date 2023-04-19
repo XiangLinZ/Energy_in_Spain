@@ -1,6 +1,6 @@
 import streamlit as st
 
-st.title("Energéticas en España")
+st.title("10 Años de energía en España")
 "---"
 st.image("../images/energia_bombilla.jpg")
 

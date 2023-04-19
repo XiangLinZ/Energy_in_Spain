@@ -6,10 +6,10 @@ import src.soporte as sp
 
 st.title("Precio Energético")
 "---"
-st.markdown("###### Los datos que se analizan son referentes al precio energético español, esto, es el mercado mayorista, que después se desglosa en diferentes ámbitos, incluyendo a empresas de venta minorista, por lo que los precios no son iguales pero influyen al precio de la luz doméstica.")
+st.markdown("###### Los datos son referentes al precio energético nacional, influyen pero no son iguales al precio doméstico.")
 st.plotly_chart(sp.px_precio_historico())
-st.markdown("En el gráfico podemos apreciar que el precio es medianamente constante, a excepción de un anómalo pico que empieza a mediados de 2021.")
-st.markdown("Estos picos en el precio energético pueden estar relacionados a...")
+st.markdown("En primavera de 2021 hay un aumento por el encarecimiento del gas, seguido por el comflicto de Ukrania-Rusia.")
+
 
 st.header("Análisis semanal")
 "---"
