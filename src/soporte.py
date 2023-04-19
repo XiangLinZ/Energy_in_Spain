@@ -7,8 +7,17 @@ sys.path.append("../")
 import src.biblioteca as bb
 
 def balance():
+    """
+    Descarga datos de balance eléctrico de la API de apidatos.ree.es, procesa los datos y los guarda en un archivo CSV.
+
+    Returns:
+    None
+
+    Example:
+    >>> balance()
+    """
     df_final = pd.DataFrame()
-    years = [x for x in range(2013,2024)]
+    years = [x for x in range(2013, 2024)]
 
     for year in years:
         n_months = 13
@@ -39,14 +48,23 @@ def balance():
 
             df_final = pd.concat([df_final, df_fecha], axis = 0)
 
-    df_final.to_csv("../data/scrap/balance.csv", index=False)
+    df_final.to_csv("../data/scrap/balance.csv", index = False)
 
 
-# bien
 def balance_ccaa():
+    """
+    Obtiene los datos del balance eléctrico de diferentes comunidades autónomas de España desde la API de REE,
+    y almacena los datos en un archivo CSV.
+
+    Args:
+        None
+
+    Returns:
+        None
+    """
     df_final = pd.DataFrame()
     for k, v in bb.ccaa.items():
-        years = [x for x in range(2013,2023)]
+        years = [x for x in range(2013, 2023)]
 
         for year in years:
             inicio = f"{year}-01-01"
@@ -77,12 +95,22 @@ def balance_ccaa():
             df_fecha["ccaa"] = f"{k}"
             df_final = pd.concat([df_final, df_fecha], axis = 0)
 
-    df_final.to_csv(f"../data/scrap/balance_ccaa.csv", index=False)
+    df_final.to_csv(f"../data/scrap/balance_ccaa.csv", index = False)
 
-# bien
+
 def demanda():
+    """
+    Obtiene los datos de evolución de la demanda eléctrica en España desde la API de REE,
+    y almacena los datos en un archivo CSV.
+
+    Args:
+        None
+
+    Returns:
+        None
+    """
     df_final = pd.DataFrame()
-    years = [x for x in range(2013,2024)]
+    years = [x for x in range(2013, 2024)]
     for year in years:
         inicio = f"{year}-01-01"
         final = f"{year}-12-31"
@@ -94,12 +122,22 @@ def demanda():
 
         df_final = pd.concat([df_final, df], axis = 0)
 
-    df_final.to_csv("../data/scrap/demanda.csv", index=False)
+    df_final.to_csv("../data/scrap/demanda.csv", index = False)
 
-# bien
+
 def demanda_ccaa():
+    """
+    Obtiene los datos de evolución de la demanda eléctrica por Comunidades Autónomas en España
+    desde la API de REE, y almacena los datos en un archivo CSV.
+
+    Args:
+        None
+
+    Returns:
+        None
+    """
     df_final = pd.DataFrame()
-    years = [x for x in range(2013,2023)]
+    years = [x for x in range(2013, 2023)]
     for year in years:
         inicio = f"{year}-01-01"
         final = f"{year}-12-31"
@@ -116,12 +154,22 @@ def demanda_ccaa():
         df_ccaa = pd.concat(lista_sin_fecha, axis = 1)
         df_final = pd.concat([df_final, df_ccaa], axis = 0)
         
-    df_final.to_csv(f"../data/scrap/demanda_ccaa.csv", index=False)
+    df_final.to_csv(f"../data/scrap/demanda_ccaa.csv", index = False)
 
-#bien
+
 def demanda_max_diaria():
+    """
+    Obtiene los datos de la demanda eléctrica máxima diaria en España desde la API de REE,
+    y almacena los datos en un archivo CSV.
+
+    Args:
+        None
+
+    Returns:
+        None
+    """
     df_final = pd.DataFrame()
-    years = [x for x in range(2013,2024)]
+    years = [x for x in range(2013, 2024)]
     for year in years:
         inicio = f"{year}-01-01"
         final = f"{year}-12-31"
@@ -134,12 +182,22 @@ def demanda_max_diaria():
 
         df_final = pd.concat([df_final, df], axis = 0)
 
-    df_final.to_csv("../data/scrap/demanda_max_diaria.csv", index=False)
+    df_final.to_csv("../data/scrap/demanda_max_diaria.csv", index = False)
 
-#bien
+
 def demanda_max_horaria():
+    """
+    Obtiene los datos de la demanda eléctrica máxima horaria en España desde la API de REE,
+    y almacena los datos en un archivo CSV.
+
+    Args:
+        None
+
+    Returns:
+        None
+    """
     df_final = pd.DataFrame()
-    years = [x for x in range(2013,2024)]
+    years = [x for x in range(2013, 2024)]
     for year in years:
         inicio = f"{year}-01-01"
         final = f"{year}-12-31"
@@ -152,12 +210,22 @@ def demanda_max_horaria():
 
         df_final = pd.concat([df_final, df], axis = 0)
 
-    df_final.to_csv("../data/scrap/demanda_max_horaria.csv", index=False)
+    df_final.to_csv("../data/scrap/demanda_max_horaria.csv", index = False)
 
-#bien
+
 def perdidas_transporte():
+    """
+    Obtiene los datos de pérdidas en el transporte de energía eléctrica en España desde la API de REE,
+    y almacena los datos en un archivo CSV.
+
+    Args:
+        None
+
+    Returs:
+        None
+    """
     df_final = pd.DataFrame()
-    years = [x for x in range(2014,2024)] # Tienen datos desde el 2014
+    years = [x for x in range(2014, 2024)] # Tienen datos desde el 2014
     for year in years:
         inicio = f"{year}-01-01"
         final = f"{year}-12-31"
@@ -170,12 +238,22 @@ def perdidas_transporte():
 
         df_final = pd.concat([df_final, df], axis = 0)
 
-    df_final.to_csv("../data/scrap/perdidas_transporte.csv", index=False)
+    df_final.to_csv("../data/scrap/perdidas_transporte.csv", index = False)
 
-#bien
+
 def potencia_maxima_instantanea():
+    """
+    Obtiene los datos de potencia máxima instantánea de demanda eléctrica en España desde la API de REE,
+    y almacena los datos en un archivo CSV.
+
+    Args:
+        None
+
+    Returns:
+        None
+    """
     df_final = pd.DataFrame()
-    years = [x for x in range(2014,2024)]
+    years = [x for x in range(2014, 2024)]
     for year in years:
         inicio = f"{year}-01-01"
         final = f"{year}-12-31"
@@ -188,12 +266,22 @@ def potencia_maxima_instantanea():
 
         df_final = pd.concat([df_final, df], axis = 0)
 
-    df_final.to_csv("../data/scrap/potencia_maxima_instantanea.csv", index=False)
+    df_final.to_csv("../data/scrap/potencia_maxima_instantanea.csv", index = False)
 
-# bien
+
 def demanda_tiempo_real():
+    """
+    Obtiene los datos de demanda eléctrica en tiempo real en España desde la API de REE,
+    y almacena los datos en un archivo CSV.
+
+    Args:
+        None
+
+    Returns:
+        None
+    """
     df_final = pd.DataFrame()
-    years = [x for x in range(2014,2024)]
+    years = [x for x in range(2014, 2024)]
 
     for year in years:
         n_months = 13
@@ -205,7 +293,7 @@ def demanda_tiempo_real():
             inicio = f"{year}-{month[0]}-01"
             final = f"{year}-{month[0]}-{month[1]}"
 
-            url = f'https://apidatos.ree.es/es/datos/demanda/demanda-tiempo-real?start_date={inicio}T00:00&end_date={final}T23:59&time_trunc=hour'
+            url = f"https://apidatos.ree.es/es/datos/demanda/demanda-tiempo-real?start_date={inicio}T00:00&end_date={final}T23:59&time_trunc=hour"
 
             respuesta = requests.get(url).json()
 
@@ -221,12 +309,22 @@ def demanda_tiempo_real():
 
             df_final = pd.concat([df_final, df_fecha], axis = 0)
 
-    df_final.to_csv("../data/scrap/demanda_tiempo_real.csv", index=False)
+    df_final.to_csv("../data/scrap/demanda_tiempo_real.csv", index = False)
 
-#bien
+
 def evolucion_renovable():
+    """
+    Obtiene los datos de evolución de la generación renovable y no renovable en España desde la API de REE,
+    y almacena los datos en un archivo CSV.
+
+    Args:
+        None
+
+    Returns:
+        None
+    """
     df_final = pd.DataFrame()
-    years = [x for x in range(2014,2024)]
+    years = [x for x in range(2014, 2024)]
 
     for year in years:
         n_months = 13
@@ -238,7 +336,7 @@ def evolucion_renovable():
             inicio = f"{year}-{month[0]}-01"
             final = f"{year}-{month[0]}-{month[1]}"
 
-            url = f'https://apidatos.ree.es/es/datos/generacion/evolucion-renovable-no-renovable?start_date={inicio}T00:00&end_date={final}T23:59&time_trunc=day'
+            url = f"https://apidatos.ree.es/es/datos/generacion/evolucion-renovable-no-renovable?start_date={inicio}T00:00&end_date={final}T23:59&time_trunc=day"
 
             respuesta = requests.get(url).json()
 
@@ -254,18 +352,28 @@ def evolucion_renovable():
 
             df_final = pd.concat([df_final, df_fecha], axis = 0)
 
-    df_final.to_csv("../data/scrap/evolucion_renovable_no_renovable.csv", index=False)
+    df_final.to_csv("../data/scrap/evolucion_renovable_no_renovable.csv", index = False)
 
-#bien
+
 def evolucion_renovable_ccaa():
+    """
+    Obtiene los datos de evolución de la generación renovable y no renovable por Comunidad Autónoma en España desde
+    la API de REE, y almacena los datos en un archivo CSV.
+
+    Args:
+        None
+
+    Returns:
+        None
+    """
     df_final = pd.DataFrame()
-    years = [x for x in range(2014,2023)]
+    years = [x for x in range(2014, 2023)]
     for k, v in bb.ccaa.items():
         for year in years:
             inicio = f"{year}-01-01"
             final = f"{year}-12-31"
 
-            url = f'https://apidatos.ree.es/es/datos/generacion/evolucion-renovable-no-renovable?start_date={inicio}T00:00&end_date={final}T23:59&time_trunc=month&geo_limit=ccaa&geo_ids={v}'
+            url = f"https://apidatos.ree.es/es/datos/generacion/evolucion-renovable-no-renovable?start_date={inicio}T00:00&end_date={final}T23:59&time_trunc=month&geo_limit=ccaa&geo_ids={v}"
 
             respuesta = requests.get(url).json()
             try:
@@ -285,12 +393,22 @@ def evolucion_renovable_ccaa():
             df_fecha["ccaa"] = f"{k}"
             df_final = pd.concat([df_final, df_fecha], axis = 0)
 
-    df_final.to_csv("../data/scrap/evolucion_renovable_no_renovable_ccaa.csv", index=False)
+    df_final.to_csv("../data/scrap/evolucion_renovable_no_renovable_ccaa.csv", index = False)
 
-# bien (tiene ccaa, pero me parece raro este dato)
+
 def estructura_renovable():
+    """
+    Obtiene los datos de estructura de generación renovable por día en España desde la API de REE, y almacena los
+    datos en un archivo CSV.
+
+    Args:
+        None
+
+    Returns:
+        None
+    """
     df_final = pd.DataFrame()
-    years = [x for x in range(2014,2024)]
+    years = [x for x in range(2014, 2024)]
 
     for year in years:
         n_months = 13
@@ -302,7 +420,7 @@ def estructura_renovable():
             inicio = f"{year}-{month[0]}-01"
             final = f"{year}-{month[0]}-{month[1]}"
 
-            url = f'https://apidatos.ree.es/es/datos/generacion/estructura-renovables?start_date={inicio}T00:00&end_date={final}T23:59&time_trunc=day'
+            url = f"https://apidatos.ree.es/es/datos/generacion/estructura-renovables?start_date={inicio}T00:00&end_date={final}T23:59&time_trunc=day"
 
             respuesta = requests.get(url).json()
 
@@ -318,12 +436,22 @@ def estructura_renovable():
 
             df_final = pd.concat([df_final, df_fecha], axis = 0)
 
-    df_final.to_csv("../data/scrap/estructura_renovables.csv", index=False)
+    df_final.to_csv("../data/scrap/estructura_renovables.csv", index = False)
 
-# bien, se puede por ccaa
+
 def emisiones_CO2():
+    """
+    Obtiene los datos de emisiones de CO2 por generación no renovable por día en España desde la API de REE, y
+    almacena los datos en un archivo CSV.
+
+    Args:
+        None
+
+    Returns:
+        None
+    """
     df_final = pd.DataFrame()
-    years = [x for x in range(2014,2024)]
+    years = [x for x in range(2014, 2024)]
 
     for year in years:
         n_months = 13
@@ -335,7 +463,7 @@ def emisiones_CO2():
             inicio = f"{year}-{month[0]}-01"
             final = f"{year}-{month[0]}-{month[1]}"
 
-            url = f'https://apidatos.ree.es/es/datos/generacion/no-renovables-detalle-emisiones-CO2?start_date={inicio}T00:00&end_date={final}T23:59&time_trunc=day'
+            url = f"https://apidatos.ree.es/es/datos/generacion/no-renovables-detalle-emisiones-CO2?start_date={inicio}T00:00&end_date={final}T23:59&time_trunc=day"
 
             respuesta = requests.get(url).json()
 
@@ -351,12 +479,22 @@ def emisiones_CO2():
 
             df_final = pd.concat([df_final, df_fecha], axis = 0)
 
-    df_final.to_csv("../data/scrap/emisiones_CO2.csv", index=False)
+    df_final.to_csv("../data/scrap/emisiones_CO2.csv", index = False)
 
 
 def precios_mercados():
+    """
+    Obtiene los datos de precios de mercados en tiempo real por hora en España desde la API de REE,
+    y almacena los datos en un archivo CSV.
+
+    Args:
+        None
+
+    Returns:
+        None
+    """
     df_final = pd.DataFrame()
-    years = [x for x in range(2014,2024)]
+    years = [x for x in range(2014, 2024)]
 
     for year in years:
         n_months = 13
@@ -375,4 +513,4 @@ def precios_mercados():
 
             df_final = pd.concat([df_final, df], axis = 0)
 
-    df_final.to_csv("../data/scrap/precios_mercados.csv", index=False)
+    df_final.to_csv("../data/scrap/precios_mercados.csv", index = False)

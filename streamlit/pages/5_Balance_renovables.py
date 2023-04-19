@@ -11,9 +11,7 @@ st.write("Explicación energías")
 st.write("Explicación gráfica")
 st.plotly_chart(sp.px_porcentage_renovables_barplot())
 st.plotly_chart(sp.px_porcentage_renovables_sunburst())
-st.write("Título")
-st.write("Explicación gráfica")
-st.plotly_chart(sp.px_emisiones())
+
 
 st.write("Título")
 st.write("Explicación gráfica")
