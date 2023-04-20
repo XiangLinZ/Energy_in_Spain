@@ -1,15 +1,17 @@
 import streamlit as st
 
+st.set_page_config(layout="wide")
+
 import sys
 sys.path.append("../")
 import src.soporte as sp
 import src.biblioteca as bb
 
 
-st.title("Balance Energías")
+st.write("<h1 style='text-align: center;'>Balance Energías</h1>", unsafe_allow_html=True)
 "---"
-st.markdown("###### ¿Qué tipo de gráfica quieres?")
-col1, col2, col3 = st.columns([1,1,5])
+st.write("<h5 style='text-align: center;'>¿Qué tipo de gráfica quieres?</h5>", unsafe_allow_html=True)
+relleno, col1, col2, relleno2 = st.columns([5,1,1,5])
 grafica = "bar"
 with col1:
     if st.button('Barplot'):
@@ -22,27 +24,25 @@ with col2:
     else:
         pass
 if grafica == "bar":
-    st.plotly_chart(sp.px_porcentage_renovables_barplot())
+    st.plotly_chart(sp.px_porcentage_renovables_barplot(), config={'displayModeBar': False, 'staticPlot': False, 'scrollZoom': False, 'editable': False},use_container_width=True)
     st.markdown("- Se aprecia mejor las diferencias entre energías.")
 elif grafica == "sun":
-    st.plotly_chart(sp.px_porcentage_renovables_sunburst())
+    st.plotly_chart(sp.px_porcentage_renovables_sunburst(), config={'displayModeBar': False, 'staticPlot': False, 'scrollZoom': False, 'editable': False},use_container_width=True)
     st.markdown("- Se aprecia mejor el porcentage de energía renovable frente a la no renovable.")
 else:
     pass
 
-st.markdown("##### ¿Mostrar descripción?")
-col1a, col2a, col3a = st.columns([1,1,5])
+st.write("<h5 style='text-align: center;'>¿Mostrar descripción?</h5>", unsafe_allow_html=True)
+
+rellenoa, col1a, col2a, relleno2a = st.columns([10,1,1,10])
 mostrar = "no"
 with col1a:
     if st.button('No'):
         mostrar = "no"
-    else:
-        pass
+
 with col2a:
     if st.button('Sí'):
         mostrar = "si"
-    else:
-        pass
 if mostrar == "si":
     st.subheader("Tipos de energías")
     "---"
@@ -70,19 +70,18 @@ if mostrar == "si":
 else:
     pass    
 
-st.header("Evolución de cada energía")
+st.write("<h2 style='text-align: center;'>Evolución Energética</h2>", unsafe_allow_html=True)
 "---"
 st.markdown("###### Evolución por tipo de energía por meses en MW")
 energias = st.multiselect(
     '¿Qué energías quieres visualizar?',
     bb.tipos_energia,
     ['Carbón', 'Ciclo combinado'])
-st.plotly_chart(sp.px_balance_renovables(energias))
+st.plotly_chart(sp.px_balance_renovables(energias), config={'displayModeBar': False, 'staticPlot': False, 'scrollZoom': False, 'editable': False},use_container_width=True)
 st.markdown("- Se opta por el ciclo combinado como alternativa del carbón.")
 
-st.header("Emisiones de CO2")
+st.write("<h2 style='text-align: center;'>Emisiones de CO2</h2>", unsafe_allow_html=True)
 "---"
 st.markdown("###### Emisiones de residuos directos de CO2 de cada energía no renovable, estos valores están en T/mes.")
-st.plotly_chart(sp.px_emisiones())
-st.markdown("- Decrecimiento del carbón.")
-st.markdown("- Crecimiento del ciclo combinado como alternativa del carbón.")
+st.plotly_chart(sp.px_emisiones(), config={'displayModeBar': False, 'staticPlot': False, 'scrollZoom': False, 'editable': False},use_container_width=True)
+st.markdown("- El ciclo combinado es una buena alternativa del carbón porque emite menos CO2.")

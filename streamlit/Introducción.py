@@ -1,15 +1,16 @@
 import streamlit as st
+st.set_page_config(layout="wide")
 
-st.title("10 Años de energía en España")
+st.write("<h1 style='text-align: center;'>10 Años de energía en España</h1>", unsafe_allow_html=True)
 "---"
-st.image("../images/energia_bombilla.jpg")
+st.image("../images/imagen_verde2.jpg", use_column_width = True)
 
 st.write("Cuando se habla de 'energéticas en España', se refiere a las empresas encargadas de la producción, distribución y comercialización de energía en el país, ya sea eléctrica, gas o petróleo. Este es un tema que puede resultar complicado, ya que involucra aspectos técnicos, económicos y políticos.")
 st.write("Además, es un tema volátil debido a que está influenciado por factores externos que pueden afectar su estabilidad, como los cambios en el mercado energético internacional, las políticas gubernamentales, los desastres naturales, entre otros.")
 st.write("Por lo tanto, es importante estar informado sobre las últimas novedades y eventos relacionados con el sector energético en España, con el fin de entender mejor cómo estos pueden afectar a la economía del país y a la vida cotidiana de sus habitantes.")
 st.write("Es por eso que decidí indagar más en este tema, para poder tener una visión más completa y actualizada de la situación energética en España.")
 "---"
-st.header("Proceso")
+st.write("<h2 style='text-align: center;'>Proceso</h2>", unsafe_allow_html=True)
 "---"
 st.markdown("###### Este proyecto tiene como objetivo principal realizar un análisis descriptivo de los datos sobre energéticas.")
 st.markdown('- Recolección de datos: Mediante llamadas a la API "REData". REData es una API de Red Eléctrica Española, que tiene disponible diversos datos relacionados con la producción y demanda de energía en España.')
