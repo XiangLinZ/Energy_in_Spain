@@ -16,10 +16,3 @@ st.markdown("- Análisis descriptivo: Estudiar y analizar la naturaleza de los d
 st.markdown("- Realizar un modelo predictivo: En este caso una serie temporal sobre la demanda e intentar aacercarme a los resultados de REE.")
 st.markdown("- Streamlit: Mostrar los resultados junto al análisis en una mini app con la herramienta Streamlit para tener así una interfaz más amigable y accesible.")
 "---"
-st.header("Herramientas")
-"---"
-st.markdown("###### He usado diversas herramientas en este proyecto con distintos fines, aquí enumero las herramientas, junto a una pequeña descripción de estas.")
-"---"
-st.header("Agradecimientos")
-"---"
-st.markdown("Gracias a ti bb por leerme.")

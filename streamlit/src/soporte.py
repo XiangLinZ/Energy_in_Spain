@@ -401,3 +401,30 @@ def px_generado():
         font = dict(family = "Arial", color = "#00072D"))
     
     return fig
+
+
+def px_prediccion():
+    """
+    Carga los datos de visualización desde un archivo pickle y crea una gráfica de línea con Plotly.
+
+    Args:
+        None
+        
+    Returns:
+        fig (plotly.graph_objects.Figure): Objeto de la gráfica de línea creada con Plotly.
+    """
+    with open("../data/visualizacion/px_prediccion.pkl", "rb") as prediccion_demanda:
+        df_demanda_predicción = pickle.load(prediccion_demanda)
+
+    fig = px.line(
+            df_demanda_predicción,
+            x = "Fecha",
+            y = ["Demanda real en MW", "Prediccion propia en MW", "Demanda prevista en MW"],
+            color_discrete_sequence = ["blue", "red", "green"])
+
+    fig.update_layout(
+        plot_bgcolor = "#E1D5D7",
+        paper_bgcolor = "#F7EBEC",
+        font = dict(family = "Arial", color = "#00072D"))
+    
+    return fig

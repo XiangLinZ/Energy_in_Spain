@@ -11,7 +11,7 @@ st.markdown("###### La demanda energética es a nivel nacional, engloba diversos
 
 año = st.slider("¿De qué año quieres la demanda?", 2013, 2023, 2023)
 st.plotly_chart(sp.px_demanda(año))
-st.markdown("Las caídas siempre están asociadas a los días de las semanas pertenecientes a Domingos.")
+st.markdown("- Las caídas siempre están asociadas a los días de las semanas pertenecientes a Domingos.")
 
 st.header("Demanda Real semanal")
 "---"
@@ -33,9 +33,15 @@ st.markdown("- Hay menos demanda por madrugadas y por el medio día.")
 st.markdown("- Hay más demanda por las mañanas y por las noches.")
 st.markdown("- Hay menos demanda en los Sábados y Domingos.")
 
+st.header("Modelo predictivo")
+"---"
+st.plotly_chart(sp.px_prediccion())
+st.markdown("- Modelo: ARIMA")
+st.markdown("- Margen de error: 4'85%")
+
 st.header("Demanda semanal por estaciones")
 "---"
 st.markdown("###### Comparación de la demanda por estaciones")
 st.plotly_chart(sp.px_demanda_estacion())
-st.markdown("En esta gráfica tenemos la media de todas las semanas en los últimos 10 años por estación en MW.")
-st.markdown("Los contornos son semejantes pero distintos en cada estación.")
+st.markdown("- En esta gráfica tenemos la media de todas las semanas en los últimos 10 años por estación en MW.")
+st.markdown("- Los contornos son semejantes pero distintos en cada estación.")
