@@ -8,8 +8,9 @@ import src.soporte as sp
 import src.biblioteca as bb
 
 
-st.write("<h1 style='text-align: center;'>Balance Energías</h1>", unsafe_allow_html=True)
+st.write("<h1 style='text-align: center;'>Composición del Mix Energético</h1>", unsafe_allow_html=True)
 "---"
+st.markdown("###### El mix energético se refiere a la combinación o proporción de diferentes fuentes de energía que se utilizan para abastecer las necesidades energéticas de España.")
 st.write("<h5 style='text-align: center;'>¿Qué tipo de gráfica quieres?</h5>", unsafe_allow_html=True)
 relleno, col1, col2, relleno2 = st.columns([5,1,1,5])
 grafica = "bar"
@@ -25,7 +26,7 @@ with col2:
         pass
 if grafica == "bar":
     st.plotly_chart(sp.px_porcentage_renovables_barplot(), config={'displayModeBar': False, 'staticPlot': False, 'scrollZoom': False, 'editable': False},use_container_width=True)
-    st.markdown("- Se aprecia mejor las diferencias entre energías.")
+    st.markdown("- Se aprecia mejor las diferencias entre las distintas energías.")
 elif grafica == "sun":
     st.plotly_chart(sp.px_porcentage_renovables_sunburst(), config={'displayModeBar': False, 'staticPlot': False, 'scrollZoom': False, 'editable': False},use_container_width=True)
     st.markdown("- Se aprecia mejor el porcentage de energía renovable frente a la no renovable.")
@@ -49,17 +50,17 @@ if mostrar == "si":
     col1a, col2a, = st.columns(2)
     with col1a:
         st.markdown("###### Energías renovables")
-        st.markdown("- Hidráulica: Convierte la cinética del agua en energía.")
-        st.markdown("- Eólica: Convierte la cinética del viento en energía.")
-        st.markdown("- Solar fotovoltáica: Convierte la luz solar en energía.")
-        st.markdown("- Solar térmica: Convierte la luz en calor y luego en energía.")
-        st.markdown("- Residuos renovables: Convierte los residuos naturales en energía.")
+        st.markdown("- Hidráulica: Convierte la cinética del agua en energía eléctrica.")
+        st.markdown("- Eólica: Convierte la cinética del viento en energía eléctrica.")
+        st.markdown("- Solar fotovoltáica: Convierte la luz solar en energía eléctrica.")
+        st.markdown("- Solar térmica: Convierte la luz en energía térmica y posteriormente en energía eléctrica.")
+        st.markdown("- Residuos renovables: Mediante la combustión de residuos naturales se obtiene energía eléctrica.")
         st.markdown("- Hidroeólica: Combinación de eólica e hidráulica.")
-        st.markdown("- Turbinación bombeo: Con energía sobrante, bombea agua y genera energía hidráulica.")
-        st.markdown("- Otras renovables: Otras tecnologías como mareomotriz, hidrógeno, olas...")
+        st.markdown("- Turbinación bombeo: Con energía sobrante, se bombea agua y posteriormente se genera energía hidráulica con esta.")
+        st.markdown("- Otras renovables: Otras tecnologías como mareomotriz, hidrógeno, geotérmica, oleaje...")
     with col2a:
         st.markdown("###### Energías no renovables")
-        st.markdown("- Nuclear: Conviertela energía de la fisión nuclear en energía.")
+        st.markdown("- Nuclear: Conviertela energía de la fisión nuclear en energía eléctrica.")
         st.markdown("- Carbón: Combustión del carbón.")
         st.markdown("- Motores diésel: Cobustión del diésel.")
         st.markdown("- Turbinación gas: Combustión de gas natural.")
@@ -82,6 +83,6 @@ st.markdown("- Se opta por el ciclo combinado como alternativa del carbón.")
 
 st.write("<h2 style='text-align: center;'>Emisiones de CO2</h2>", unsafe_allow_html=True)
 "---"
-st.markdown("###### Emisiones de residuos directos de CO2 de cada energía no renovable, estos valores están en T/mes.")
+st.markdown("###### Se refiere a las emisiones directas de dióxido de carbono (CO2) producidas por cada fuente de energía no renovable, las cuales se expresan en toneladas por mes (T/mes).")
 st.plotly_chart(sp.px_emisiones(), config={'displayModeBar': False, 'staticPlot': False, 'scrollZoom': False, 'editable': False},use_container_width=True)
-st.markdown("- El ciclo combinado es una buena alternativa del carbón porque emite menos CO2.")
+st.markdown("- El ciclo combinado es una buena alternativa del carbón porque emite menos CO2 produciendo la misma energía.")

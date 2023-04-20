@@ -8,7 +8,7 @@ import src.soporte as sp
 
 st.write("<h1 style='text-align: center;'>Precio Energético</h1>", unsafe_allow_html=True)
 "---"
-st.markdown("###### Los datos son referentes al precio energético nacional, influyen pero no son iguales al precio doméstico.")
+st.markdown("###### El precio energético es el valor económico que se paga por la energía utilizada, ya sea electricidad, gas, petróleo u otras fuentes de energía y puede tener un impacto significativo en los costos de energía para consumidores y empresas.")
 st.plotly_chart(sp.px_precio_historico(), config={'displayModeBar': False, 'staticPlot': False, 'scrollZoom': False, 'editable': False},use_container_width=True)
 st.markdown("- En primavera de 2021 hay un aumento por la escasez de gas, seguido por el comflicto de Ukrania-Rusia en primavera del 2022.")
 

@@ -9,7 +9,7 @@ import src.soporte as sp
 
 st.write("<h1 style='text-align: center;'>Demanda Energética</h1>", unsafe_allow_html=True)
 "---"
-st.markdown("###### La demanda energética es a nivel nacional, engloba diversos ámbitos y viene en unidades de MW.")
+st.markdown("###### La demanda energética es a nivel nacional y representa la cantidad de electricidad que es requerida para el uso residencial, comercial e industrial, entre otros sectores. Además viene en unidades de MW/día.")
 
 col1, relleno = st.columns([1,4])
 with col1:
