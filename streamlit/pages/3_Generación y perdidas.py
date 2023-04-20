@@ -14,5 +14,5 @@ st.title("Perdidas por transporte")
 "---"
 st.markdown("###### Los datos están agrupados por meses y representan el porcentage del total generado.")
 st.plotly_chart(sp.px_perdidas())
-st.markdown("Ligera tendencia ascendente.")
+st.markdown("- Ligera tendencia ascendente.")
 st.markdown("- Picos en inviernos y bajadas en verano.")

@@ -4,8 +4,10 @@ st.title("10 Años de energía en España")
 "---"
 st.image("../images/energia_bombilla.jpg")
 
-st.write("Las energéticas en españa son un tema complicado e incluso volátiles, y más aún con varios eventos que afectan este campo, por eso mismo, quise indagar un poco más en este tema.")
-st.write("Por otro lado, otro ámbito interesante e importante para mí son las energías renovables, siempre he oido de estas, por lo que ahora tengo la oportunidad para aumentar mi entendimiento en este campo y así poder analizar el panorama de las energías renovables.")
+st.write("Cuando se habla de 'energéticas en España', se refiere a las empresas encargadas de la producción, distribución y comercialización de energía en el país, ya sea eléctrica, gas o petróleo. Este es un tema que puede resultar complicado, ya que involucra aspectos técnicos, económicos y políticos.")
+st.write("Además, es un tema volátil debido a que está influenciado por factores externos que pueden afectar su estabilidad, como los cambios en el mercado energético internacional, las políticas gubernamentales, los desastres naturales, entre otros.")
+st.write("Por lo tanto, es importante estar informado sobre las últimas novedades y eventos relacionados con el sector energético en España, con el fin de entender mejor cómo estos pueden afectar a la economía del país y a la vida cotidiana de sus habitantes.")
+st.write("Es por eso que decidí indagar más en este tema, para poder tener una visión más completa y actualizada de la situación energética en España.")
 "---"
 st.header("Proceso")
 "---"
@@ -13,6 +15,6 @@ st.markdown("###### Este proyecto tiene como objetivo principal realizar un aná
 st.markdown('- Recolección de datos: Mediante llamadas a la API "REData". REData es una API de Red Eléctrica Española, que tiene disponible diversos datos relacionados con la producción y demanda de energía en España.')
 st.markdown("- Tratamiento y limpieza de datos: Limpiar y transformar los datos para tenerlos con una estructura o formato deseada, para después realizar modelos predictivos o visualizar estos datos.")
 st.markdown("- Análisis descriptivo: Estudiar y analizar la naturaleza de los datos, mediante posibles visualizaciones e interpretar estos resultados.")
-st.markdown("- Realizar un modelo predictivo: En este caso una serie temporal sobre la demanda e intentar aacercarme a los resultados de REE.")
+st.markdown("- Realizar un modelo predictivo: En este caso una serie temporal sobre la demanda e intentar acercarme a los resultados de REE.")
 st.markdown("- Streamlit: Mostrar los resultados junto al análisis en una mini app con la herramienta Streamlit para tener así una interfaz más amigable y accesible.")
 "---"

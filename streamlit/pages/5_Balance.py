@@ -76,7 +76,7 @@ st.markdown("###### Evolución por tipo de energía por meses en MW")
 energias = st.multiselect(
     '¿Qué energías quieres visualizar?',
     bb.tipos_energia,
-    ['Carbón', 'Ciclo combinado', "Cogeneración"])
+    ['Carbón', 'Ciclo combinado'])
 st.plotly_chart(sp.px_balance_renovables(energias))
 st.markdown("- Se opta por el ciclo combinado como alternativa del carbón.")
 

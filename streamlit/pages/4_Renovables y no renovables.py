@@ -24,5 +24,5 @@ st.header("Evolución de las energías renovables")
 "---"
 st.markdown("###### Porcentaje de energía generada por España renovable y no renovable en los últimos años.")
 st.plotly_chart(sp.px_evo_reno())
-st.markdown("- Ligerera tendencia en las energías renovables.")
+st.markdown("- Ligera tendencia creciente en las energías renovables.")
 st.markdown("- Bajadas por otoño debido a la inestabilidad de las energías renovables.")
