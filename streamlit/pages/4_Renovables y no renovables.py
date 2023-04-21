@@ -9,7 +9,7 @@ import src.soporte as sp
 
 st.write("<h1 style='text-align: center;'>Energía Renovables</h1>", unsafe_allow_html=True)
 "---"
-st.image("../images/renovables.jpg", use_column_width = True)
+st.image("../images/verde2b.jpg", use_column_width = True)
 st.markdown("- Energía renovable: Energía que se obtiene a partir de fuentes naturales virtualmente inagotables.")
 st.markdown("- Energía no renovable: Fuentes de energía que se encuentran en la naturaleza en cantidades limitadas.")
 st.markdown("- En 2019, la media mundial se situaba en torno el 11% y la media europea en el 34%.")
