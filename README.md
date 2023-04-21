@@ -23,6 +23,7 @@ Es por ello que he decidido profundizar en este tema para obtener una visión m�
 
 ---
 # Proceso
+![subportada](/images/conexiones.jpg)
 El objetivo principal de este proyecto es realizar un análisis descriptivo de los datos relacionados con la producción y demanda de energía en España.
 
 ### Recolección de datos
