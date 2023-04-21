@@ -1,11 +1,16 @@
 import streamlit as st
 import streamlit.components.v1 as components
 
-st.set_page_config(layout="wide")
+# Configuración de la página en centrado
+st.set_page_config(layout="centered")
 
+
+# Título de la sección evolución de las ccaa
 st.write("<h1 style='text-align: center;'>Evolución de las CCAA</h1>", unsafe_allow_html=True)
 "---"
 st.markdown("###### Serie temporal donde podemos ver cuánta energía y qué porcentage de esta es renovable de cada CCAA.")
+
+# Creación de objeto tipo Tableau a través de una url
 html_temp = """
 <div class='tableauPlaceholder' id='viz1681998278083' 'position: absolute; Top:50%; Bot50%;'>
     <noscript>
@@ -49,6 +54,9 @@ html_temp = """
 </script>
 """
 
+# Llamada a la gráfica de Tableau
 components.html(html_temp, width = 850, height = 850, scrolling = False)
+
+# Detalles interesantes de la gráfica
 st.markdown("- Comunidades como Galicia, Castilla y León, Aragón y en los últimos años Andalucía, producen bastante energía y además están por encima de la media.")
 st.markdown("- Por otro lado, Catalunya, Valencia y Extrmadura, también producen bastante energía, pero el porcentaje de renovables en esta es menor.")

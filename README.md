@@ -71,6 +71,8 @@ El objetivo principal de este proyecto es realizar un análisis descriptivo de l
 
 - [Calendar](https://docs.python.org/3/library/calendar.html): Es una biblioteca estándar de Python que proporciona funciones y clases para trabajar con calendarios y fechas, como la obtención de información sobre días de la semana, meses, años bisiestos, y la generación de calendarios y fechas en diferentes formatos.
 
+- [Datetime](https://docs.python.org/3/library/datetime.html): Biblioteca de Python que proporciona clases para la manipulación de fechas y horas.
+
 - [Request](https://pypi.org/project/requests/): La biblioteca "requests" es una biblioteca popular de Python que permite realizar solicitudes HTTP de forma sencilla.
 
 - [Plotly](https://plotly.com/): Es una biblioteca de visualización de datos interactiva en Python que permite crear gráficos interactivos y personalizables.
