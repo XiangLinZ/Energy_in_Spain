@@ -53,7 +53,7 @@ El objetivo principal de este proyecto es realizar un análisis descriptivo de l
 - Modelo: ARIMA
 - Orden estacional: (0, 1, 0, 2)
 - Margen de error: 4'85%
-- Este modelo pesa 1.5Gb, por lo que si deseas una copia, puedes contactarme.
+- Este modelo pesa 1.5Gb, por lo que si deseas una copia, puedes [contactarme](https://www.linkedin.com/in/xianglinzheng/).
 ---
 # Streamlit
 - He realizado un streamlit donde se analiza y se estudian todos los datos, además de las conclusiones y motivos de por qué los datos se comportan de esa manera. Lo puedes encontrar [aquí](https://github.com/XiangLinZ/Proyecto_Final/tree/main/streamlit). 👈👈
@@ -66,6 +66,8 @@ El objetivo principal de este proyecto es realizar un análisis descriptivo de l
 - [Numpy](https://numpy.org/): Es una biblioteca de Python para trabajar con matrices y arreglos multidimensionales.
 
 - [Pandas](https://pandas.pydata.org/): Es una biblioteca de software libre para el lenguaje de programación Python destinada a manipulación y análisis de datos.
+
+- [REData](https://www.ree.es/es/apidatos): API de REE en la que tienen diversos datos relacionandos con la red eléctrica de España.
 
 - [Pycaret](https://pycaret.org/): PyCaret es una biblioteca de Python que proporciona una interfaz de alto nivel para el aprendizaje automático, simplificando y agilizando el proceso de desarrollo, entrenamiento, evaluación y ajuste de modelos de machine learning.
 
@@ -84,3 +86,6 @@ El objetivo principal de este proyecto es realizar un análisis descriptivo de l
 - [Pickle](https://docs.python.org/3/library/pickle.html): Biblioteca de Python que permite serializar y deserializar objetos de Python.
 
 - [Tqdm](https://github.com/tqdm/tqdm): Es una biblioteca de Python para mostrar una barra de progreso en bucles y operaciones iterables.
+---
+# Agradecimientos
+Gracias principalmente mis profesores de Ironhack [Ana](https://www.linkedin.com/in/ana-garcia-garcia-090a5058/), [JeanCha](https://www.linkedin.com/in/jeancharlesyamada/) y [César](https://www.linkedin.com/in/cesar-valle-iturriaga/) por haberme enseñado tantas cosas y ofrecerme tanta ayuda a lo largo del bootcamp, a [Sindri](https://github.com/Slivered) por apoyarme como compañero en el curso y al resto de compañeros de clase, ya que ha sido la mejor clase y mejor experiencia que he podido esperar o desear!! 🥰🥰🥰
