@@ -45,7 +45,7 @@ st.markdown("- España apuesta fuerte por la energía eólica debido a que se es
 st.markdown("- La energía solar no es tan relevante debido a cambios en la política energética, un avance más lento en su tecnología y un mayor coste de inversión.")
 
 # Selector para mostrar las descripciones de cada energía y la información de estas.
-st.write("<h5 style='text-align: center;'>¿Mostrar descripción?</h5>", unsafe_allow_html=True)
+st.write("<h5 style='text-align: center;'>¿Mostrar explicación de los tipos de energías?</h5>", unsafe_allow_html=True)
 
 rellenoa, col1a, col2a, relleno2a = st.columns([10,1,1,10])
 mostrar = "no"

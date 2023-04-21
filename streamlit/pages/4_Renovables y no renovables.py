@@ -16,11 +16,6 @@ st.write("<h1 style='text-align: center;'>Energía Renovables</h1>", unsafe_allo
 # Imagen de fondo
 st.image("../images/verde2b.jpg", use_column_width = True)
 
-# Descripción de energías renovables y no renovables
-st.markdown("- Energía renovable: Energía que se obtiene a partir de fuentes naturales virtualmente inagotables.")
-st.markdown("- Energía no renovable: Fuentes de energía que se encuentran en la naturaleza en cantidades limitadas.")
-st.markdown("- En 2019, la media mundial se situaba en torno el 11% y la media europea en el 34%.")
-
 # Carga de datos y cálculo del promedio de energía renovable
 with open(f"../data/visualizacion/px_evo_reno.pkl", "rb") as evo_reno:
     df = pickle.load(evo_reno)
@@ -36,6 +31,10 @@ with col1:
 with col2:
     st.write(f"<h5 style='text-align: center;'>No Renovable</h5>", unsafe_allow_html=True)
     st.write(f"<h2 style='text-align: center;'>{round(100-mean_value_reno, 2)}%</h2>", unsafe_allow_html=True)
+# Descripción de energías renovables y no renovables
+st.markdown("- Energía renovable: Energía que se obtiene a partir de fuentes naturales virtualmente inagotables.")
+st.markdown("- Energía no renovable: Fuentes de energía que se encuentran en la naturaleza en cantidades limitadas.")
+st.markdown("- En 2019, la media mundial se situaba en torno el 11% y la media europea en el 34%.")
 
 # Título de la sección de Evolución de Renovables
 st.write("<h2 style='text-align: center;'>Evolución de Renovables</h2>", unsafe_allow_html=True)
