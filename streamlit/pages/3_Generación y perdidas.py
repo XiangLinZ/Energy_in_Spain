@@ -10,12 +10,13 @@ st.write("<h1 style='text-align: center;'>Generación Energética</h1>", unsafe_
 "---"
 st.markdown("###### La generación energética viene en unidades de MW/mes y representa el total de energía generada en España.")
 st.plotly_chart(sp.px_generado(), config={'displayModeBar': False, 'staticPlot': False, 'scrollZoom': False, 'editable': False},use_container_width=True)
-st.markdown("- No hay tendecia en los últimos 10 años.")
-st.markdown("- Bajada en primavera del 2020 debido al confinamiento del COVID-19.")
+st.markdown("- No hay tendecia en los últimos 10 años, es decir, España no ha aumentado su generación energética.")
+st.markdown("- Bajada de generación energética en primavera del 2020 que coincide con el confinamiento del COVID-19.")
 
 st.write("<h2 style='text-align: center;'>Pérdidas por Transporte</h2>", unsafe_allow_html=True)
 "---"
 st.markdown("###### Las pérdidas por transporte se refieren al porcentaje de energía que se disipa o se pierde durante la transmisión y distribución a través de las redes eléctricas.")
 st.plotly_chart(sp.px_perdidas(), config={'displayModeBar': False, 'staticPlot': False, 'scrollZoom': False, 'editable': False},use_container_width=True)
 st.markdown("- Ligera tendencia ascendente posiblemente debido al envejecimiento de la infraestructura.")
+st.markdown("- La bajada en las pérdidas energéticas en otoño de 2014 pueden deberse a mejoras de infraestructura o condiciones climáticas favorables.")
 st.markdown("- En verano hay menor pérdida debido a mejores condiciones climáticas, lo que produce menos averías.")

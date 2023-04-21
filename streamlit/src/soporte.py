@@ -247,7 +247,7 @@ def px_balance_renovables(energias):
         "Turbinación bombeo": "blue", "Nuclear": "green", "Ciclo combinado": "brown",
         "Carbón": "black", "Turbina de gas": "orange", "Motores diésel": "gold", "Turbina de vapor": "cyan",
         "Fuel + Gas": "pink", "Cogeneración": "grey", "Residuos no renovables": "purple", "Hidráulica": "royalblue",
-        "Eólica": "lightblue", "Solar fotovoltaica": "yellow", "Solar térmica": "red", "Otras renovables": "violet",
+        "Eólica": "#8884FF", "Solar fotovoltaica": "yellow", "Solar térmica": "red", "Otras renovables": "violet",
         "Residuos renovables": "yellowgreen", "Hidroeólica": "seashell"})
     
     fig.update_layout(

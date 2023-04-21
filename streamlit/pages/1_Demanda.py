@@ -16,7 +16,7 @@ with col1:
     año = st.slider("¿De qué año quieres la demanda?", 2013, 2023, 2023)
 st.plotly_chart(sp.px_demanda(año), config={'displayModeBar': False, 'staticPlot': False, 'scrollZoom': False, 'editable': False},use_container_width=True)
 st.markdown("- Las caídas siempre están asociadas a los días de las semanas pertenecientes a fines de semana, debido a la disminución de actividad humana.")
-st.markdown("- La demanda es inferior en primavera y en otoño, debido al clima entre otros factores.")
+st.markdown("- La demanda es inferior en primavera y en otoño, debido al clima y las horas de luz entre otros factores.")
 
 st.write("<h2 style='text-align: center;'>Demanda Real Semanal</h2>", unsafe_allow_html=True)
 "---"
@@ -38,12 +38,6 @@ st.markdown("- Hay menos demanda por las madrugadas debido a los patrones de sue
 st.markdown("- Hay menor demanda por las tardes debido a descansos, mejor clima, horarios de trabajo y escuela, entre otros motivos.")
 st.markdown("- Los fines de semana hay menos actividad laboral e industrial.")
 
-st.write("<h2 style='text-align: center;'>Modelo Predictivo</h2>", unsafe_allow_html=True)
-"---"
-st.markdown("###### He entrenado un modelo predicitvo con los datos de la demanda para ver cuán cerca estarían mis predicciones de los valores reales.")
-st.plotly_chart(sp.px_prediccion(),config={'displayModeBar': False, 'staticPlot': False, 'scrollZoom': False, 'editable': False},use_container_width=True)
-st.markdown("- Modelo: ARIMA")
-st.markdown("- Margen de error: 4'85%")
 
 st.write("<h2 style='text-align: center;'>Demanda Estacional</h2>", unsafe_allow_html=True)
 "---"

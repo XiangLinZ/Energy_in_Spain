@@ -26,12 +26,13 @@ with col2:
         pass
 if grafica == "bar":
     st.plotly_chart(sp.px_porcentage_renovables_barplot(), config={'displayModeBar': False, 'staticPlot': False, 'scrollZoom': False, 'editable': False},use_container_width=True)
-    st.markdown("- Se aprecia mejor las diferencias entre las distintas energías.")
+    st.markdown("- Se aprecia mejor las diferencias entre las distintas energías relevantes y las no tan relevantes.")
 elif grafica == "sun":
     st.plotly_chart(sp.px_porcentage_renovables_sunburst(), config={'displayModeBar': False, 'staticPlot': False, 'scrollZoom': False, 'editable': False},use_container_width=True)
     st.markdown("- Se aprecia mejor el porcentage de energía renovable frente a la no renovable.")
-else:
-    pass
+st.markdown("- La energía nuclear sigue siendo una parte importante de la energía generada por España, una quinta parte del total.")
+st.markdown("- España apuesta fuerte por la energía eólica debido a que se están realizando bastantes avances en su tecnología y está situada en un excelente punto geográfico con viento constante.")
+st.markdown("- La energía solar no es tan relevante debido a cambios en la política energética, un avance más lento en su tecnología y un mayor coste de inversión.")
 
 st.write("<h5 style='text-align: center;'>¿Mostrar descripción?</h5>", unsafe_allow_html=True)
 
@@ -80,7 +81,7 @@ energias = st.multiselect(
     ['Carbón', 'Ciclo combinado'])
 st.plotly_chart(sp.px_balance_renovables(energias), config={'displayModeBar': False, 'staticPlot': False, 'scrollZoom': False, 'editable': False},use_container_width=True)
 st.markdown("- Se opta por el ciclo combinado como alternativa del carbón.")
-
+st.markdown("- Las principales energías renovables producen más en primavera haciendo que se recurra menos a las no renovables en esos periodos.")
 st.write("<h2 style='text-align: center;'>Emisiones de CO2</h2>", unsafe_allow_html=True)
 "---"
 st.markdown("###### Se refiere a las emisiones directas de dióxido de carbono (CO2) producidas por cada fuente de energía no renovable, las cuales se expresan en toneladas por mes (T/mes).")
